@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Willy Weather Jr.</title>
+     <!--Bootstrap-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+     <!-- Font Awesome -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!--CSS File-->
+
+    </head>
+
+<body>
+     <!--Jumbotron section-->
+     <section class="jumbotron container-fluid mt-2 text-center p-2" style="background-color:#0c1331 ;color: white;">
+        <h1> Willy Weather Jr.</h1>
+     </section>
+
+    <!--Section wrapping all main content-->
+     <section class = container>
+
+        <!--City search-->
+        <div class = "row">
+
+            <div id="search-card" class = "col-sm-4 bg-light">
+                <h2 class = "p-1">Choose your city:</h2>
+                <!--Input bar for City-->
+                <div class="input-group mb-3">
+                    <input id="search-box" class="form-control" type="text" > <!--id="search-button" was removed-->
+                    <div class="input-group-append">
+                        <button id="search-button" class=" btn bg-primary text-light" onclick="currentWeather(document.querySelector('#search-box').value) ; forecastWeather(document.querySelector('#search-box').value);"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+
+                <!--Cities' recent history-->
+                <button id= "clear-history" class = "btn btn-primary" type="button"> Clear List</button>
+                <ul class="list-group">
+                
+                </ul>
+            </div>
+        
+        <!--Current weather stats-->
+            <section class = "col-sm-8">
+                <div class="row border border-dark rounded ml-2">
+                    <!--Current date stats card-->
+                    <div id="current-weather" class = "col-sm-12">
+                        <h3 id="current-city" class = "city-name mb-1 mt-2 bolder"></h3>
+                        <h4 id="current-date"></h4>
+                        <p>Temperature: <span id="temperature" class="today"></span></p>
+                        <p>Humidity: <span id="humidity" class="today"></span></p>
+                        <p>Wind Speed: <span id="wind-speed"></span></p>
+                        <p>UV Index: <span id="uv-index" class="today rounded py-1"></span></p>                      
+                    </div>
+                </div>
+
+                <!--5d forecast-->
+                <section id = "future=weather" class = "col-sm-12">
+                    <h3 class = "text-center mt-4">Week Forecast</h3>
+                    <div class = "row text-light">
+
+                        <!--Day 1-->
+                        <div class="fc-card col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded" >
+                            <h6 id="d1"></h6>
+                            <p id="img1"></p>
+                            <p>Temp:<span id="temp1"></span></p>
+                            <p>Humidity:<span id="hm1"></span></p>
+                        </div>
+
+                        <!--Day 2-->
+                        <div class="fc-card col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded" >
+                            <h6 id="d2"></h6>
+                            <p id="img2"></p>
+                            <p>Temp:<span id="temp2"></span></p>
+                            <p>Humidity:<span id="hm2"></span></p>
+                        </div>
+
+                        <!--Day 3-->
+                        <div class="fc-card col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded" >
+                            <h6 id="d3"></h6>
+                            <p id="img3"></p>
+                            <p>Temp<span id="temp3"></span></p>
+                            <p>Humidity:<span id="hm3"></span></p>
+                        </div>
+
+                        <!--Day 4-->
+                        <div class="fc card col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded" >
+                            <h6 id="d4"></h6>
+                            <p id="img4"></p>
+                            <p>Temp:<span id="temp4"></span></p>
+                            <p>Humidity:<span id="hm4"></span></p>
+                        </div>
+
+                        <!--Day 5-->
+                        <div class="fc-card col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded" >
+                            <h6 id="d5"></h6>
+                            <p id="img5"></p>
+                            <p>Temp:<span id="temp5"></span></p>
+                            <p>Humidity:<span id="hm5"></span></p>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </div>
+     </section>
+
+     <!--jQuery JS-->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+
+    
+    <!--JS File-->
+    <script src="./assets/script.js"></script>
+
+</body>
+</html>
