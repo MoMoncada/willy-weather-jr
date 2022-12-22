@@ -10,7 +10,7 @@ const APIKey= "886571290f5f5737c3eef4cec64106a7";
 const metricSystem = "&units=metric";
 
 // ---- Today ---- //
-var currentDay = moment().format("d MMM YYYY");
+var currentDay = moment().format("DD MMM YYYY");
 
 
 
@@ -71,7 +71,7 @@ var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + metr
 
     });
 
-    function uvColor(uvValue, colorbgd) { //TODO: change colours for nicer ones
+    function uvColor(uvValue, colorbgd) { 
         var colorbgd = "";
         if (uvValue <= 2) {
             colorbgd = "#99FF99";
@@ -107,11 +107,11 @@ function forecastWeather (city){
         console.log(response); // pense que una for loop seria la mejor opcion
 
             // -- Day 1 -- //
-            var date = moment(response.list[0].dt_txt).format("d MMM YYYY"); // no me sale la fecha que es
-            var iconCode= response.list[0].weather[0].icon;
+            var date = moment(response.list[7].dt_txt).format("DD MMM YYYY"); // no me sale la fecha que es
+            var iconCode= response.list[7].weather[0].icon;
             var weatherImg="https://openweathermap.org/img/wn/"+ iconCode + ".png";
-            var fcTemp= response.list[0].main.temp;
-            var fcHumidity= response.list[0].main.humidity;
+            var fcTemp= response.list[7].main.temp;
+            var fcHumidity= response.list[7].main.humidity;
         
             $("#d1").html(date);
             $("#img1").html("<img src="+ weatherImg +">");
@@ -121,20 +121,63 @@ function forecastWeather (city){
         
         
             // -- Day 2 -- //
+            var date = moment(response.list[15].dt_txt).format("DD MMM YYYY"); // no me sale la fecha que es
+            var iconCode= response.list[15].weather[0].icon;
+            var weatherImg="https://openweathermap.org/img/wn/"+ iconCode + ".png";
+            var fcTemp= response.list[15].main.temp;
+            var fcHumidity= response.list[15].main.humidity;
+        
+            $("#d2").html(date);
+            $("#img2").html("<img src="+ weatherImg +">");
+            $("#temp2").html("  " + fcTemp+"°C");
+            $("#hm2").html("  " + fcHumidity+"%");
+            $("#img2").html("<img src="+ weatherImg +">");
                   
 
 
             // -- Day 3 -- //
-
+            var date = moment(response.list[23].dt_txt).format("DD MMM YYYY"); // no me sale la fecha que es
+            var iconCode= response.list[23].weather[0].icon;
+            var weatherImg="https://openweathermap.org/img/wn/"+ iconCode + ".png";
+            var fcTemp= response.list[23].main.temp;
+            var fcHumidity= response.list[23].main.humidity;
+        
+            $("#d3").html(date);
+            $("#img3").html("<img src="+ weatherImg +">");
+            $("#temp3").html("  " + fcTemp+"°C");
+            $("#hm3").html("  " + fcHumidity+"%");
+            $("#img3").html("<img src="+ weatherImg +">");
 
 
 
             // -- Day 4 -- //
+            var date = moment(response.list[31].dt_txt).format("DD MMM YYYY"); // no me sale la fecha que es
+            var iconCode= response.list[31].weather[0].icon;
+            var weatherImg="https://openweathermap.org/img/wn/"+ iconCode + ".png";
+            var fcTemp= response.list[31].main.temp;
+            var fcHumidity= response.list[31].main.humidity;
+        
+            $("#d4").html(date);
+            $("#img4").html("<img src="+ weatherImg +">");
+            $("#temp4").html("  " + fcTemp+"°C");
+            $("#hm4").html("  " + fcHumidity+"%");
+            $("#img4").html("<img src="+ weatherImg +">");
 
 
 
 
             // -- Day 5 -- //
+            var date = moment(response.list[39].dt_txt).format("DD MMM YYYY"); // no me sale la fecha que es
+            var iconCode= response.list[39].weather[0].icon;
+            var weatherImg="https://openweathermap.org/img/wn/"+ iconCode + ".png";
+            var fcTemp= response.list[39].main.temp;
+            var fcHumidity= response.list[39].main.humidity;
+        
+            $("#d5").html(date);
+            $("#img5").html("<img src="+ weatherImg +">");
+            $("#temp5").html("  " + fcTemp+"°C");
+            $("#hm5").html("  " + fcHumidity+"%");
+            $("#img5").html("<img src="+ weatherImg +">");
               
 
         
