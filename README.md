@@ -32,9 +32,9 @@ N/A
 
 ## Submission Links
 
-### GitHub: 
+### GitHub: https://github.com/MoMoncada/willy-weather-jr
 
-### Deployed URL: https://github.com/MoMoncada/willy-weather-jr
+### Deployed URL: 
 
 
 ---------------------

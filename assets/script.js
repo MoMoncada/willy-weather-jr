@@ -59,7 +59,7 @@ var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + metr
        if(response.cod==200){
             sCity=JSON.parse(localStorage.getItem("cityname"))  || [];
             console.log(sCity);
-            debugger;
+            
                 if(city !== null){
                  
                    if(!sCity.includes(city.toUpperCase())){
@@ -210,15 +210,10 @@ function forecastWeather (city){
             $("#temp5").html("  " + fcTemp+"°C");
             $("#hm5").html("  " + fcHumidity+"%");
             $("#img5").html("<img src="+ weatherImg +">");
-            $("#speed5").html("  "+ fcWindSpeed + "m/s");
-              
-
-        
+            $("#speed5").html("  "+ fcWindSpeed + "m/s");            
 
 
     });
-
-
 };
 
 
