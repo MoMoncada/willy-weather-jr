@@ -42,7 +42,7 @@ N/A
 ## Deployed Web Page
 
 ### Willy Weather Jr.
-![forecast](./assets/images/willy-img.png)
+![Forecast](./assets/images/willy-png.png)
 
 
 
