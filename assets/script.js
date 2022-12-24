@@ -115,8 +115,6 @@ var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + metr
 // ---- Five day forecast AJAX call ---- //
     
 function forecastWeather (city){
-
-    
     
     var forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + metricSystem + "&APPID=" + APIKey;
    
@@ -125,7 +123,6 @@ function forecastWeather (city){
         method: 'GET'
     }) 
     
-
     .then(function(response) {
 
         console.log(response); 
@@ -196,7 +193,6 @@ function forecastWeather (city){
 
 
 
-
             // -- Day 5 -- //
             var date = moment(response.list[39].dt_txt).format("DD MMM YYYY"); 
             var iconCode= response.list[39].weather[0].icon;
@@ -235,7 +231,7 @@ function handler(c){
 
 //--- Load Cities from localStorage ---//
 function loadCities(){
-    debugger;
+    
     let cacheCities = JSON.parse(localStorage.getItem('cityname')) || []
     for(let i = 0; i < cacheCities.length; i++){
         addToList(cacheCities[i]);
@@ -253,7 +249,6 @@ function searchHistory(event){
 
 }
 
-
 //--- Clear History ---// 
 function clearHistory(){ // done
     sCity=[];
@@ -261,5 +256,3 @@ function clearHistory(){ // done
     document.location.reload();
 
 }
-
-
