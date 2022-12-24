@@ -1,16 +1,23 @@
 
-// openweather API DOCS https://openweathermap.org/forecast5//
-
-// http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=886571290f5f5737c3eef4cec64106a7 esta es la general usando mi key
-
 //---- API Key ----//
 const APIKey= "886571290f5f5737c3eef4cec64106a7";
+
 
 // ---- Retrieves data using metric system units ---- //
 const metricSystem = "&units=metric";
 
+
+//---- DOM Elements ----//
+var inputEl = document.querySelector("#input");
+var searchBtnEl = document.querySelector("#search-button");
+var citiesListEl = document.querySelector(".cities-list");
+
+
 // ---- Today ---- //
 var currentDay = moment().format("DD MMM YYYY");
+
+//---- Search History List ----//
+var sCity=[];
 
 
 
@@ -44,6 +51,25 @@ var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + metr
         $("#temperature").text(response.main.temp + "°C");
         $("#humidity").text(response.main.humidity + "%");
         $("#wind-speed").text(response.wind.speed + "m/s");
+
+
+        //---- Record and add cities to the list ----//
+       forecastWeather(response.name); //TODO: Esto es nuevo
+       
+       if(response.cod==200){
+            sCity=JSON.parse(localStorage.getItem("cityname"))  || [];
+            console.log(sCity);
+            debugger;
+                if(city !== null){
+                 
+                   if(!sCity.includes(city.toUpperCase())){
+                    sCity.push(city.toUpperCase());
+                    localStorage.setItem("cityname",JSON.stringify(sCity));
+                    addToList(city); 
+                   }  
+                  
+                }
+        }
 
         
 
@@ -84,8 +110,6 @@ var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + metr
         }
         return colorbgd;
     }
-        
-          
 } 
 
 // ---- Five day forecast AJAX call ---- //
@@ -93,9 +117,9 @@ var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + metr
 function forecastWeather (city){
 
     
-    //api.openweathermap.org/data/2.5/forecast?q=fremantle&units=metric&appid=886571290f5f5737c3eef4cec64106a7
+    
     var forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + metricSystem + "&APPID=" + APIKey;
-   // var forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=fremantle&units=metric&appid=886571290f5f5737c3eef4cec64106a7";
+   
     $.ajax ({
         url: forecastURL,
         method: 'GET'
@@ -104,10 +128,10 @@ function forecastWeather (city){
 
     .then(function(response) {
 
-        console.log(response); // pense que una for loop seria la mejor opcion
+        console.log(response); 
 
             // -- Day 1 -- //
-            var date = moment(response.list[7].dt_txt).format("DD MMM YYYY"); // no me sale la fecha que es
+            var date = moment(response.list[7].dt_txt).format("DD MMM YYYY"); 
             var iconCode= response.list[7].weather[0].icon;
             var weatherImg="https://openweathermap.org/img/wn/"+ iconCode + ".png";
             var fcTemp= response.list[7].main.temp;
@@ -121,7 +145,7 @@ function forecastWeather (city){
         
         
             // -- Day 2 -- //
-            var date = moment(response.list[15].dt_txt).format("DD MMM YYYY"); // no me sale la fecha que es
+            var date = moment(response.list[15].dt_txt).format("DD MMM YYYY"); 
             var iconCode= response.list[15].weather[0].icon;
             var weatherImg="https://openweathermap.org/img/wn/"+ iconCode + ".png";
             var fcTemp= response.list[15].main.temp;
@@ -136,7 +160,7 @@ function forecastWeather (city){
 
 
             // -- Day 3 -- //
-            var date = moment(response.list[23].dt_txt).format("DD MMM YYYY"); // no me sale la fecha que es
+            var date = moment(response.list[23].dt_txt).format("DD MMM YYYY"); 
             var iconCode= response.list[23].weather[0].icon;
             var weatherImg="https://openweathermap.org/img/wn/"+ iconCode + ".png";
             var fcTemp= response.list[23].main.temp;
@@ -151,7 +175,7 @@ function forecastWeather (city){
 
 
             // -- Day 4 -- //
-            var date = moment(response.list[31].dt_txt).format("DD MMM YYYY"); // no me sale la fecha que es
+            var date = moment(response.list[31].dt_txt).format("DD MMM YYYY");
             var iconCode= response.list[31].weather[0].icon;
             var weatherImg="https://openweathermap.org/img/wn/"+ iconCode + ".png";
             var fcTemp= response.list[31].main.temp;
@@ -167,7 +191,7 @@ function forecastWeather (city){
 
 
             // -- Day 5 -- //
-            var date = moment(response.list[39].dt_txt).format("DD MMM YYYY"); // no me sale la fecha que es
+            var date = moment(response.list[39].dt_txt).format("DD MMM YYYY"); 
             var iconCode= response.list[39].weather[0].icon;
             var weatherImg="https://openweathermap.org/img/wn/"+ iconCode + ".png";
             var fcTemp= response.list[39].main.temp;
@@ -190,6 +214,46 @@ function forecastWeather (city){
 
 
 
+//--- Add City to the UL ---// TODO: Todo esto es nuevo
+function addToList(c){
+    var listEl= $("<li>"+c.toUpperCase()+"</li>");
+    $(listEl).attr("class","list-group-item");
+    $(listEl).attr("data-value",c.toUpperCase());
+    $(".cities-list").append(listEl);
+
+    // listEl.addEventListener("click", clickHandlerFor(c), false)
+
+}
+
+function handler(c){
+    currentWeather(c);
+}
+
+//--- funcion para cargar la lista de ciudades del localStorage ---//
+function loadCities(){
+    debugger;
+    let cacheCities = JSON.parse(localStorage.getItem('cityname')) || []
+    for(let i = 0; i < cacheCities.length; i++){
+        addToList(cacheCities[i]);
+    }
+    
+}
+
+// --- Past History ---//
+function searchHistory(event){
+    var liEl=event.target;
+    if (event.target.matches("li")){
+        city=liEl.textContent.trim();
+        currentWeather(city);
+    }
+
+}
 
 
+//--- Clear History ---// 
+function clearHistory(){ // done
+    sCity=[];
+    localStorage.removeItem("cityname");
+    document.location.reload();
 
+}

@@ -14,7 +14,7 @@
 
     </head>
 
-<body>
+<body onLoad="loadCities()">
      <!--Jumbotron section-->
      <section class="jumbotron container-fluid mt-2 text-center p-2" style="background-color:#0c1331 ;color: white;">
         <h1> Willy Weather Jr.</h1>
@@ -30,15 +30,15 @@
                 <h2 class = "p-1">Choose your city:</h2>
                 <!--Input bar for City-->
                 <div class="input-group mb-3">
-                    <input id="search-box" class="form-control" type="text" > <!--id="search-button" was removed-->
+                    <input id="search-box" class="form-control" type="text" > 
                     <div class="input-group-append">
-                        <button id="search-button" class=" btn bg-primary text-light" onclick="currentWeather(document.querySelector('#search-box').value) ; forecastWeather(document.querySelector('#search-box').value);"><i class="fa fa-search"></i></button>
+                        <button id="search-button" class=" btn bg-primary text-light" onclick="currentWeather(document.querySelector('#search-box').value)"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
 
                 <!--Cities' recent history-->
-                <button id= "clear-history" class = "btn btn-primary" type="button"> Clear List</button>
-                <ul class="list-group">
+                <button id= "clear-history" class = "btn btn-primary" type="button" onclick="clearHistory()"> Clear List</button>
+                <ul class="cities-list">
                 
                 </ul>
             </div>
