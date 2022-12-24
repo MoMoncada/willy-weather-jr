@@ -34,7 +34,7 @@ N/A
 
 ### GitHub: https://github.com/MoMoncada/willy-weather-jr
 
-### Deployed URL: 
+### Deployed URL: https://momoncada.github.io/willy-weather-jr/
 
 
 ---------------------
@@ -43,8 +43,6 @@ N/A
 
 ### Willy Weather Jr.
 ![Forecast](./assets/images/willy-png.png)
-
-
 
 
 ## Credits
