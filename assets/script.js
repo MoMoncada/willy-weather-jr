@@ -54,7 +54,7 @@ var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + metr
 
 
         //---- Record and add cities to the list ----//
-       forecastWeather(response.name); //TODO: Esto es nuevo
+       forecastWeather(response.name); 
        
        if(response.cod==200){
             sCity=JSON.parse(localStorage.getItem("cityname"))  || [];
@@ -136,13 +136,14 @@ function forecastWeather (city){
             var weatherImg="https://openweathermap.org/img/wn/"+ iconCode + ".png";
             var fcTemp= response.list[7].main.temp;
             var fcHumidity= response.list[7].main.humidity;
+            var fcWindSpeed = response.list[7].wind.speed;
         
             $("#d1").html(date);
             $("#img1").html("<img src="+ weatherImg +">");
             $("#temp1").html("  " + fcTemp+"°C");
             $("#hm1").html("  " + fcHumidity+"%");
             $("#img1").html("<img src="+ weatherImg +">");
-        
+            $("#speed1").html("  "+ fcWindSpeed + "m/s");
         
             // -- Day 2 -- //
             var date = moment(response.list[15].dt_txt).format("DD MMM YYYY"); 
@@ -150,12 +151,14 @@ function forecastWeather (city){
             var weatherImg="https://openweathermap.org/img/wn/"+ iconCode + ".png";
             var fcTemp= response.list[15].main.temp;
             var fcHumidity= response.list[15].main.humidity;
+            var fcWindSpeed = response.list[15].wind.speed;
         
             $("#d2").html(date);
             $("#img2").html("<img src="+ weatherImg +">");
             $("#temp2").html("  " + fcTemp+"°C");
             $("#hm2").html("  " + fcHumidity+"%");
             $("#img2").html("<img src="+ weatherImg +">");
+            $("#speed2").html("  "+ fcWindSpeed + "m/s");
                   
 
 
@@ -165,12 +168,14 @@ function forecastWeather (city){
             var weatherImg="https://openweathermap.org/img/wn/"+ iconCode + ".png";
             var fcTemp= response.list[23].main.temp;
             var fcHumidity= response.list[23].main.humidity;
+            var fcWindSpeed = response.list[23].wind.speed;
         
             $("#d3").html(date);
             $("#img3").html("<img src="+ weatherImg +">");
             $("#temp3").html("  " + fcTemp+"°C");
             $("#hm3").html("  " + fcHumidity+"%");
             $("#img3").html("<img src="+ weatherImg +">");
+            $("#speed3").html("  "+ fcWindSpeed + "m/s");
 
 
 
@@ -180,12 +185,14 @@ function forecastWeather (city){
             var weatherImg="https://openweathermap.org/img/wn/"+ iconCode + ".png";
             var fcTemp= response.list[31].main.temp;
             var fcHumidity= response.list[31].main.humidity;
+            var fcWindSpeed = response.list[31].wind.speed;
         
             $("#d4").html(date);
             $("#img4").html("<img src="+ weatherImg +">");
             $("#temp4").html("  " + fcTemp+"°C");
             $("#hm4").html("  " + fcHumidity+"%");
             $("#img4").html("<img src="+ weatherImg +">");
+            $("#speed4").html("  "+ fcWindSpeed + "m/s");
 
 
 
@@ -196,12 +203,14 @@ function forecastWeather (city){
             var weatherImg="https://openweathermap.org/img/wn/"+ iconCode + ".png";
             var fcTemp= response.list[39].main.temp;
             var fcHumidity= response.list[39].main.humidity;
+            var fcWindSpeed = response.list[39].wind.speed;
         
             $("#d5").html(date);
             $("#img5").html("<img src="+ weatherImg +">");
             $("#temp5").html("  " + fcTemp+"°C");
             $("#hm5").html("  " + fcHumidity+"%");
             $("#img5").html("<img src="+ weatherImg +">");
+            $("#speed5").html("  "+ fcWindSpeed + "m/s");
               
 
         
@@ -214,7 +223,7 @@ function forecastWeather (city){
 
 
 
-//--- Add City to the UL ---// TODO: Todo esto es nuevo
+//--- Add City to the UL ---// 
 function addToList(c){
     var listEl= $("<li>"+c.toUpperCase()+"</li>");
     $(listEl).attr("class","list-group-item");
@@ -229,7 +238,7 @@ function handler(c){
     currentWeather(c);
 }
 
-//--- funcion para cargar la lista de ciudades del localStorage ---//
+//--- Load Cities from localStorage ---//
 function loadCities(){
     debugger;
     let cacheCities = JSON.parse(localStorage.getItem('cityname')) || []
@@ -257,3 +266,5 @@ function clearHistory(){ // done
     document.location.reload();
 
 }
+
+
