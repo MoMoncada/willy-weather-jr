@@ -77,7 +77,7 @@ var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + metr
         var lat = response.coord.lat;
         var lon = response.coord.lon;
         
-        var uvURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + metricSystem + "&APPID=" + APIKey; // coordenadas para los rayos uv
+        var uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + metricSystem + "&APPID=" + APIKey; // coordenadas para los rayos uv
         
 
         $.ajax ({
@@ -116,7 +116,7 @@ var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + metr
     
 function forecastWeather (city){
     
-    var forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + metricSystem + "&APPID=" + APIKey;
+    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + metricSystem + "&APPID=" + APIKey;
    
     $.ajax ({
         url: forecastURL,
