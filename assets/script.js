@@ -54,20 +54,43 @@ var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + metr
 
 
         //---- Record and add cities to the list ----//
+
+        function addToList(city){
+            var listEl = $("<li>" + city.toUpperCase() + "</li>");
+            listEl.attr("class", "list-group-item");
+            listEl.attr("data-value",city.toUpperCase());
+            $(".cities-list").append(listEl);
+            listEl.on("click", function(event) {
+                event.preventDefault();
+                var city = $(this).attr("data-value");
+                currentWeather(city);
+            });
+        }
+
+
        forecastWeather(response.name); 
        
        if(response.cod==200){
             sCity=JSON.parse(localStorage.getItem("cityname"))  || [];
             console.log(sCity);
             
-                if(city !== null){
+                // if(city !== null){
                  
-                   if(!sCity.includes(city.toUpperCase())){
-                    sCity.push(city.toUpperCase());
-                    localStorage.setItem("cityname",JSON.stringify(sCity));
-                    addToList(city); 
-                   }  
+                //    if(!sCity.includes(city.toUpperCase())){
+                //     sCity.push(city.toUpperCase());
+                //     localStorage.setItem("cityname",JSON.stringify(sCity));
+                //     addToList(city); 
+                //    }  
                   
+                // }
+
+                if (city !== null) {
+                    if (!sCity.includes(city.toUpperCase())) {
+                        sCity.push(city.toUpperCase());
+                        localStorage.setItem("cityname",JSON.stringify(sCity));
+                        addToList(city); 
+                    }
+                    inputEl.value = city; // set the input value to the clicked city name
                 }
         }
 
